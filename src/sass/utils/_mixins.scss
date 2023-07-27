@@ -1,0 +1,7 @@
+//Handy mixin to handle properly flex property in html element easily
+@mixin flex($direction: row, $justify: center, $align: center) {
+  display: flex;
+  justify-content: $justify;
+  flex-direction: $direction;
+  align-items: $align;
+}

@@ -1,0 +1,21 @@
+@import '../../sass/main.scss';
+
+.nav_bar{
+    @media screen and (max-width: 700px){
+        gap: 20px;
+    }
+    display: flex;
+    color: $color-secondary;
+    gap: 50px;
+    font-size: clamp(12px, 2.5vw, 24px);
+    
+
+    &_link{
+        &_active{
+            position: relative;
+            color: $color-secondary;
+            text-decoration: underline solid $color-secondary; 
+            
+        }
+    }
+}
