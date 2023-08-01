@@ -16,7 +16,7 @@ export default function Navbar() {
                     </Link>
                 </li>
                 
-                <li className={route === '/about' ? 'nav_bar_link_active' : 'nav_bar_link'}>
+                <li className={route === '/apropos' ? 'nav_bar_link_active' : 'nav_bar_link'}>
                     <Link  to='/apropos'>
                         A propos
                     </Link>

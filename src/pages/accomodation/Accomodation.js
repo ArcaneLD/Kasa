@@ -6,6 +6,8 @@ import { datas } from '../../data/data';
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom";
 
+import NotFound from '../404page/404page';
+
 import Header from "../../components/header/Header";
 import Slider from "../../components/slider/Slider"
 import Footer from "../../components/footer/Footer";
@@ -21,15 +23,26 @@ export default function Accomodation() {
 	const id = useParams('id').id;
 	const accomodationData = datas.filter(data => data.id === id);
 
-	const name = accomodationData[0].host.name.split(' '); 
-	const description  = accomodationData[0].description;
-	const rating = accomodationData[0].rating;
-	const equipments = accomodationData[0].equipments;
+	
+	//Using new JS property to prevent fatal error
+	const name = accomodationData[0]?.host.name.split(' '); 
+	const description  = accomodationData[0]?.description;
+	const rating = accomodationData[0]?.rating;
+	const equipments = accomodationData[0]?.equipments;
 
 	const [pictures, setPictures] = useState([]);
 	useEffect(() => {
-		setPictures(accomodationData[0].pictures);
+		setPictures(accomodationData[0]?.pictures);
 	}, [accomodationData]);
+
+	if (accomodationData.length === 0) {
+		
+		return (
+			<>
+			<NotFound />
+			</>
+		)
+	}
 
 	return (
 		<>
@@ -40,10 +53,10 @@ export default function Accomodation() {
 			<main className="logement">
 				<div className="logement_content">
 					<div className="logement_content_infos">
-						<h1>{accomodationData[0].title}</h1>
-						<p>{accomodationData[0].location}</p>
+						<h1>{accomodationData[0]?.title}</h1>
+						<p>{accomodationData[0]?.location}</p>
 						<div>
-							{accomodationData[0].tags.map((tag, index) => {
+							{accomodationData[0]?.tags.map((tag, index) => {
 								return (<button key={index}>{tag}</button>)
 							})}
 						</div>
@@ -54,7 +67,7 @@ export default function Accomodation() {
 								<span>{name[0]}</span>
 								<span>{name[1]}</span>
 							</div>
-							<img src={accomodationData[0].host.picture} />
+							<img src={accomodationData[0]?.host.picture} />
 						</div>
 							
 						<div className="logement_content_host_stars">
